@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Bidaia</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!--Propiedad importante para que 
+        la página sea responsive-->
+        <link rel="stylesheet" href="style/Home.css"><!--Enlazamos a la carpeta con el archivo css--> 
+        <script src = "Js/Home.js"></script>
+    </head>
+    <body>
+        <header>
+            <!--Logo, nombre de la página y un menú para poder registrarse, iniciar sesión,
+            contacto e información sobre nosotros-->
+            <button id = "LogIn" onclick= "IniciarSesion()"> Iniciar sesión </button>
+            <button id = "Register" onclick= "Registro()"> Registro </button>
+            <button id = "LogOff" onclick = "CerrarSesion()"> Cerrar Sesión</button>
+            <button onclick= "QuienesSomos()"> Quiénes somos </button>
+        </header>
+        <div id = "main_body">
+            <!--En el cuerpo aparecerá solamente las etiquetas de hoteles y
+            vuelos, al darles aparecerá un buscador para cada uno.-->
+            <button id = "Hoteles" onclick= "BuscaHoteles()"> Hoteles </button>
+            <button id = "Vuelos" onclick= "BuscaVuelos()"> Vuelos </button>
+            <div id = "BuscadorHoteles"> <!--Aparecerá escondido , cuando le de al botón aparecerá-->
+                <div id = "Buscador">
+                <form name = "InputdelBuscador">
+                        <input type = "text " size = "40" name = "BuscadorLugar" placeholder="Lugar, Ej: Madrid">
+                </form>
+                    
+                    <button id = "BuscarHoteles" onclick = "HotelesdelLugar()">Buscar</button>
+                </div>
+            </div>
+            <div id = "BuscadorVuelos"> <!--Aparecerá escondido , cuando le de al botón aparecerá-->
+                <div id = "Buscador">
+                    <input type = "text " size = "40" name = "BuscadorLugar" placeholder="Lugar, Ej: Madrid">
+                    <button id = "BuscarVuelos" onclick = "VuelosdelLugar()">Buscar</button>
+                </div>
+            </div>
+        <!--Formularios para el registro y el inicio de sesión-->
+        <div id = "FormRegister">
+            <form name = "Registrarse" onsubmit = "setCookie(); return false" >
+                <input type = "text" size = 100 name = "Username" placeholder = "Nombre de Usuario" required>
+                <input type = "password" size = 100 name = "password" placeholder = "Contraseña" required>
+                <input type = "text" size = 100 name = "Nombre" placeholder = "Nombre" required>
+                <input type = "text" size = 100 name = "Apellidos" placeholder = "Apellido 1 Apellido 2" required>
+                <input type = "email" size = 100 name = "e-mail" placeholder = "tucorreo@gmail.com" required>
+                <input type = "date" size = 100 name = "Cumpleaños" placeholder = "DD/MM/YYYY" required>
+                <br>
+                <input type = "url" size = 100 name = "UserPhoto" placeholder = "archivo">
+                <input type = "text" size = 100 name = "direccion" placeholder = "C/piruleta Nº 13" required>
+                <h6>He leído y acepto las Condiciones de uso</h6><input type = "checkbox" size = 10 name = "tick" required>
+                <br>
+                <input type="submit" value="Guardar">
+            </form>
+        </div>
+        
+        <div id = "Log_In">
+            <form name = "Iniciarsesion" onsubmit = "checkCookie();return false">
+                <input type="email" size="100" name="e-mail" placeholder="tucorreo@gmail.com">
+                <input type="password" size="100" name="password" placeholder="password">
+                <input type="submit" value="Guardar">
+            </form>
+            <button onclick = "checkCookie()">
+                <p>Iniciar Sesión</p><!--Tiene que comprobar si existe una cookie con los valores que añadió
+                como solo pide el correo y la contraseña, tendremos cookies para esos dos parámetros-->
+            </button>
+        </div>
+            
+
+        <!--Ahora pondremos las diferentes opciones según el Lugar-->
+            <div id = "HotelesMadrid">
+                <!--Este es el listado de opciones de Madrid-->
+                <div id = "Madrid1">
+                    <div class = "Opción">
+                        <img src = "img/HotelParquesur.jpg" alt = "Hotel Parquesur"></a>
+                        <p>
+                            Hotel del centro comercial de Leganés "Parquesur", alrededor de más de 
+                            50 tiendas y restaurantes. Perfecto para ver Madrid.
+                        </p>
+                        <button id = "Opiniones"> Opiniones </button>
+                        <a href = "https://www.booking.com/searchresults.es.html?aid=311090;label=hotel-90736-es-z4XHJMcAPGAodZnaArZE9AS266381982913%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap1t1%3Aneg%3Afi%3Atikwd-1201347512%3Alp9061048%3Ali%3Adec%3Adm;sid=3c22271018ed4b69dcc20c15c9be9ad7;city=-388994;expand_sb=1;highlighted_hotels=90736;hlrd=no_dates;keep_landing=1;redirected=1;source=hotel&gclid=EAIaIQobChMI--SGtuTb3gIVrQrTCh1fBgGuEAAYASAAEgII_vD_BwE&">
+                            <button id = "Reserva"> Reservar </button>
+                        </a>
+                    </div>
+                    <div class = "Opción">
+                        <img src = "img/HotelGranVía.jpg" alt = "Hotel Gran Vía"></a>
+                        <p>
+                                Ubicación privilegiada en plena Gran Vía, junto a la Puerta del Sol, Plaza de España, 
+                                Plaza Mayor, Plaza Cibeles y el Triángulo del Arte. 
+                                A tan solo 20 minutos en coche del aeropuerto Internacional de Madrid Barajas
+                        </p>
+                        <button id = "Opiniones"> Opiniones </button>
+                        <a href = "https://www.booking.com/searchresults.es.html?aid=311090;label=husagranvia-9qiz2c%2Aumwgvy9b6LEG_2AS266381982424%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap1t2%3Aneg%3Afi%3Atikwd-1637536271%3Alp9061048%3Ali%3Adec%3Adm;sid=3c22271018ed4b69dcc20c15c9be9ad7;city=-389593;expand_sb=1;highlighted_hotels=90889;hlrd=no_dates;keep_landing=1;redirected=1;source=hotel&gclid=EAIaIQobChMIxo-tnefb3gIVjbHtCh1pFgENEAAYAiAAEgItyvD_BwE&">
+                            <button id = "Reserva"> Reservar </button>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div id = "Madrid2">
+
+                    <div class = "Opción">
+                        <img src = "img/HotelGranVía.jpg" alt = "Hotel Gran Vía"></a>
+                        <p>
+                                Ubicación privilegiada en plena Gran Vía, junto a la Puerta del Sol, Plaza de España, 
+                                Plaza Mayor, Plaza Cibeles y el Triángulo del Arte. 
+                                A tan solo 20 minutos en coche del aeropuerto Internacional de Madrid Barajas
+                        </p>
+                        <button id = "Opiniones"> Opiniones </button>
+                        <a href = "https://www.booking.com/searchresults.es.html?aid=311090;label=husagranvia-9qiz2c%2Aumwgvy9b6LEG_2AS266381982424%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap1t2%3Aneg%3Afi%3Atikwd-1637536271%3Alp9061048%3Ali%3Adec%3Adm;sid=3c22271018ed4b69dcc20c15c9be9ad7;city=-389593;expand_sb=1;highlighted_hotels=90889;hlrd=no_dates;keep_landing=1;redirected=1;source=hotel&gclid=EAIaIQobChMIxo-tnefb3gIVjbHtCh1pFgENEAAYAiAAEgItyvD_BwE&">
+                            <button id = "Reserva"> Reservar </button>
+                        </a>
+                    </div>
+
+                    <div class = "Opción">
+                        <img src = "img/HotelParquesur.jpg" alt = "Hotel Parquesur"></a>
+                        <p>
+                            Hotel del centro comercial de Leganés "Parquesur", alrededor de más de 
+                            50 tiendas y restaurantes. Perfecto para ver Madrid.
+                        </p>
+                        <button id = "Opiniones"> Opiniones </button>
+                        <a href = "https://www.booking.com/searchresults.es.html?aid=311090;label=hotel-90736-es-z4XHJMcAPGAodZnaArZE9AS266381982913%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap1t1%3Aneg%3Afi%3Atikwd-1201347512%3Alp9061048%3Ali%3Adec%3Adm;sid=3c22271018ed4b69dcc20c15c9be9ad7;city=-388994;expand_sb=1;highlighted_hotels=90736;hlrd=no_dates;keep_landing=1;redirected=1;source=hotel&gclid=EAIaIQobChMI--SGtuTb3gIVrQrTCh1fBgGuEAAYASAAEgII_vD_BwE&">
+                            <button id = "Reserva"> Reservar </button>
+                        </a>
+                    </div>
+                    
+                </div>
+
+
+                <div class = "center">
+                    <div class="pagination">
+                        <a href="#">&laquo;</a>
+                        <a href="#" onclick = "Lista1Madrid()">1</a>
+                        <a href="#" onclick = "Lista2Madrid()">2</a>
+                        <a href="#">&raquo;</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Apartado de Quienes somos-->
+
+
+            <div id = "Quiensoy">
+                <div id = "Persona">
+                    <img src = "img/Ni puta gracia.jpg" alt = "Álvaro">
+                    <h1>Álvaro Montellano Esquinas</h1>
+                </div>
+                <div id = "Persona">
+                    <img src = "img/Edu.jpg" alt = "Edu">
+                    <h1>Eduardo Herrera Montesinos</h1>
+                </div>
+                <div id = "Persona">
+                    <img src = "img/IMG_20180603_223512.png" alt = "Marco">
+                    <h1>Marco Antonio Arcidiacono Alepuz</h1>
+                </div>
+                <div id = "Persona">
+                    <img src = "img/Denys.jpeg" alt = "Denys">
+                    <h1>Denys Porynets</h1>
+                </div>
+            </div>
+           
+        </div>
+           
+        <footer>
+            <!-- En el footer irán las redes sociales y alguna cosa más-->
+            <a href="https://www.facebook.com"><img src = "img/facebook.png" alt = "#"></a>
+            <a href="https://www.twitter.com"><img src = "img/twitter.png" alt = "#"></a>
+            <a href="https://www.instagram.com"><img src = "img/instagram.png" alt = "#"></a>
+        </footer>
+    </body>
+</html>
